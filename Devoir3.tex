@@ -211,6 +211,99 @@
 
 
 
+            \section*{Problème 4 $\quad$ $\cdot$  $\quad$ Équivalence des vecteurs}
+
+            \begin{itemize}
+                \item Montrez que tout ensemble défini récursivement est dénombrable. Mentionnez explicitement 
+                    les techniques de preuves que vous utilisez. 
+            \end{itemize}
+
+            \begin{prop}{$P(E, b_i, C_i) $}{}
+                 Soit un ensemble $E$ définit récursivement par  
+                  \begin{equation*}
+                  E = \begin{cases}
+                      b_1, b_2, \dots, b_n \Big| \overline{b} = \{b_1, b_2, \dots b_n \} & \text{(\textbf{Bases})},
+                        \\
+                      C_1, C_2, \dots, C_k \Big| \overline{C} = \{C_1, C_2, \dots C_n \} & \text{(\textbf{Constructeurs})}                    
+                        \end{cases}
+                \end{equation*}
+                Tous les ensemble défini récursivement de cette façon sont dénombrables. 
+            \end{prop}
+
+            \begin{Preuve}{}{}
+            Nous procédons par \textbf{preuve directe et par induction}. 
+            \vspace{1em}\\
+            \underline{Hypothèses}
+            \vspace{1em}\\
+            Soit l'ensemble $E$ définit ci-haut, nous condérons alors les propriétés suivantes : 
+            \begin{enumerate}
+                \item $b_1, b_2, \dots, b_n$ est un ensemble fini, $\overline{b}$, d'éléments de base définissant 
+            l'ensemble $E$ et 
+                \item $C_1, C_2, \dots C_k$ est un ensemble fini, $\overline{C}$ de 
+            constructeurs manipulant les éléments de base afin de construire de nouveaux éléments 
+            appartenant à $E$. 
+            \end{enumerate}
+
+            \paragraph{}
+            À partir de la définition de $E$, il est alors possible de construir une suite (infinie)
+            d'ensembles $E_0, E_1, E_2, \dots$ tels que chaque $E_i$ est une sous-ensemble de $E$. 
+            \vspace{1em}\\
+            \underline{Constructions d'une suite d'ensembles $E_i$}
+            \vspace{1em}\\
+            Définissons $E_0$ comme l'ensemble des éléments de base : $E_0 = \overline{b}$. Par l'hypothèse, 
+            nous savons que $E_0$ est dénombrable. Définisson également $E_{i+1}$ comme l'ensemble  
+            où pour chaque $i \geq 0, E_{i+1}$ est l'ensemble des éléments qui peuvent 
+            être construits en utilisant le constructeurs sur $E_i$. Ainsi, pour obtenir $E_1$, par exemple, 
+            il faut utiliser tous les constructeurs de $E$ sur tous les éléments de bases de $E_0 = \overline{b}$. 
+            \begin{align}
+                E_{i+1} \Coloneqq \{ C_j(E_i) \} \label{ C_j(E_i)}                           
+            \end{align}
+                        
+
+            \underline{Montrer que chaque $E_i$ est dénombrable}
+            \vspace{1em}\\
+            Par \textbf{l'hypothèse}, $E_0$ est fini et donc dénombrable. Pour construire un premier $E_{i+1}$, soit 
+            $E_1$, nous devons nécessairement faire appel à l'appliation de tous les $C_j$ sur $E_0$. 
+            Or, nous savons que les $C_j$ sont fini et donc dénombrables et nous savons également que $E_0$ 
+            est fini et donc dénombrable. Nous pouvons considérer les constructeurs $C_k$ comme une
+            fonction de $E_{i}$ à $E_{i+1}$. 
+
+            \begin{align}
+                E_{i+1} = f(C_j, E_i) = \Bigl\{ \sum_{j=1}^{j=k}C_j(E_i) \Bigr\} \label{f(C_j, E_i)}
+            \end{align}
+
+            En effet, les $C_j$ donnent les instructions permettant de d'obtenir $E_{i+1}$ à partir 
+            de $E_{i}$ et chaque ensemble $\{ C_j(E_i) \}$ est une partition de $E_i$. 
+            Nous savons que, à minori, $f(C_j, E_i)$ est surjective, puisqu'il s'agit d'une fonction 
+            de $E_i$ à $E_{i+1}$; chaque élément de $E_{i+1}$ peut être mappée sur un seul 
+            (si $f(C_j, E_i)$ est injective) ou plusieurs éléments de $E_i$. Puisque $E_i$ est dénombrable 
+            et que $f(C_j, E_i)$ est une fonction surjective de $E_i$ à $E_{i+1}$, il s'ensuit que 
+            $E_{i+1}$ est dénombre. Notons que $E_{i+1}$, l'image de $f(C_j, E_i)$ peut avoir 
+            moins d'éléments que l'ensemble de départ $E_i$, mais ne peut pas en avoir plus. Donc, dans le pire 
+            des cas, l'imag eaura la même taille que l'ensemble de départ, ce qui le rend dénombrable et demeure 
+            consitant avec la conclusions selon laquelle $E_{i+1}$ est dénombrable. Par ailleurs, 
+            nous avons montré, par l'application de la définition de $E$, que 
+            $f(C_j, E_i)$ est l'image $E_{i+1}$ de $E_i$. Or, chaque $E_i$ est dénombrable et est une partition 
+            de $E$ : 
+            \begin{align*}
+                E = \bigcup\limits_{i=0}^{\infty}E_i = \bigcup\limits_{i=1}^{i=\infty} \Bigl\{ \sum_{j=1}^{j=k}C_j(E_i) \Bigr\}
+            \end{align*}
+            Autrement dit, l'union de tous les ensembles $E_i$ obtenus en appliquant tous les constructeurs 
+            $C_j$ sur les $E_i$ forment l'ensemble $E$, conformément à la définition récursive de $E$. Puisque 
+            chaque $E_i$ est dénombrable, il s'ensuit que l'union $\bigcup\limits_{i=0}^{\infty}E_i$ est également 
+            dénombrable. Nous concluons alors que $E$ est dénombrablement infini. Ainsi, tous les 
+            ensembles définit récursivement sont dénombrables. \qed 
+        
+
+            
+           
+
+
+            \end{Preuve}
+
+            
+
+
 \end{multicols*}
 
 
